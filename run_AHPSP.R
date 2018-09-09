@@ -108,7 +108,7 @@ run_AHPSP <- function(Ni, J, Ns, Ns_poscor, poscor, pcat, stddevbase, stddevrang
   # process results
   
   # rank of the true best alternative in the scenario results 
-  rank_tbest_in_model_ro <- v_all %>% select(-i) %>% filter(v_true == 0) %>% as.numeric()
+  rank_tbest_in_model_ro <- v_all %>% select(-i) %>% filter(v_true == 0) %>% select(-v_true) %>% as.numeric()
   # rank of the model best alternative in the true results 
   rank_mbest_in_true_ro <- c(v_all %>% filter(v_allstates == 0) %>% select(v_true) %>% as.numeric(),
                              v_all %>% filter(v_sc1 == 0) %>% select(v_true) %>% as.numeric(),
@@ -120,6 +120,7 @@ run_AHPSP <- function(Ni, J, Ns, Ns_poscor, poscor, pcat, stddevbase, stddevrang
   
   # combine results
   outcomes <- c(rank_tbest_in_model_ro, rank_mbest_in_true_ro, rank_cors)
+  outcomes <- data.frame(outcomes)
   
   return(list(out = outcomes, v_all = v_all))
   
