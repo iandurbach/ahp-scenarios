@@ -1,4 +1,7 @@
-generate_criteria_weights <- function(J, Ns, Ns_poscor_w, poscor_w, min_lb, min_ub, max_lb, max_ub){
+generate_criteria_weights <- function(J, Ns, pNs_poscor_w, poscor_w, min_lb, min_ub, max_lb, max_ub){
+  
+  # number of positively correlated futures (correlation is poscor_w)
+  Ns_poscor_w <- round(pNs_poscor_w * Ns, 0)
   
   # weights correlated over futures
   my_sigma <- rbind(cbind(matrix(poscor_w, nrow = Ns_poscor_w, ncol = Ns_poscor_w), matrix(-poscor_w, nrow = Ns_poscor_w, ncol = Ns - Ns_poscor_w)),

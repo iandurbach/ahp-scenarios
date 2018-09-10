@@ -1,4 +1,7 @@
-generate_baseline_evaluations <- function(Ni, J, Ns, Ns_poscor, poscor){
+generate_baseline_evaluations <- function(Ni, J, Ns, pNs_poscor, poscor){
+  
+  # number of positively correlated futures (correlation is poscor)
+  Ns_poscor <- round(Ns * pNs_poscor, 0)
   
   # alternative performance is correlated over futures, but not over criteria. Some futures are
   # positively correlated with one another, others are negatively correlated. Correlations need

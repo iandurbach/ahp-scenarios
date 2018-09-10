@@ -1,5 +1,5 @@
-run_AHPSP <- function(Ni, J, Ns, Ns_poscor, poscor, pcat, stddevbase, stddevrange, 
-                      Ns_poscor_w, poscor_w, n_futures_used, ...){
+run_AHPSP <- function(Ni, J, Ns, pNs_poscor, poscor, pcat, stddevbase, stddevrange, 
+                      pNs_poscor_w, poscor_w, n_futures_used, ...){
   
   # get the distribution of states over futures
   if (pcat == 1) {
@@ -10,13 +10,13 @@ run_AHPSP <- function(Ni, J, Ns, Ns_poscor, poscor, pcat, stddevbase, stddevrang
   
   # generate baseline attribute evaluations in each future
   baseA <- generate_baseline_evaluations(Ni = Ni, J = J, Ns = Ns, 
-                                         Ns_poscor = Ns_poscor, poscor = poscor)
+                                         pNs_poscor = pNs_poscor, poscor = poscor)
   
   # generate state evaluations around each baseline future 
   Z <- generate_state_evaluations(baseA = baseA, p = p, stddevbase = stddevbase, stddevrange = stddevrange)
   
   # generate criterion weights in each future
-  W <- generate_criteria_weights(J = J, Ns = Ns, Ns_poscor_w = Ns_poscor_w, poscor_w = poscor_w, 
+  W <- generate_criteria_weights(J = J, Ns = Ns, pNs_poscor_w = pNs_poscor_w, poscor_w = poscor_w, 
                                  min_lb = 0.1, min_ub = 0.15, max_lb = 0.75, max_ub = 0.9)
   
   # add AHP scores to attribute evaluations

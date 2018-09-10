@@ -7,5 +7,7 @@ run_many_AHPSP <- function(Ni, J, Ns, Ns_poscor, poscor, pcat, stddevbase, stdde
              pcat = pcat, stddevbase = stddevbase, stddevrange = stddevrange, Ns_poscor_w = Ns_poscor_w, 
              poscor_w = poscor_w, n_futures_used = n_futures_used)
   
+  print("done combo")
+  
   return(res)
 }
